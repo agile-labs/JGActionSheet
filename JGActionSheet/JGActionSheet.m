@@ -217,7 +217,7 @@ static BOOL disableCustomEasing = NO;
             UILabel *titleLabel = [[UILabel alloc] init];
             titleLabel.backgroundColor = [UIColor clearColor];
             titleLabel.textAlignment = NSTextAlignmentCenter;
-            titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
+            titleLabel.font = [UIFont systemFontOfSize:12.0f];
             titleLabel.textColor = [UIColor blackColor];
             titleLabel.numberOfLines = 1;
             
@@ -321,7 +321,8 @@ static BOOL disableCustomEasing = NO;
         self.layer.shadowOpacity = 0.0f;
     }
     else {
-        self.backgroundColor = rgb(246.0f, 246.0f, 246.0f);
+//noteJ Content background
+        self.backgroundColor = rgba(246.0f, 246.0f, 246.0f, .8);
         self.layer.cornerRadius = kHostsCornerRadius;
         
         self.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -360,39 +361,42 @@ static BOOL disableCustomEasing = NO;
 //noteJ Set button styles
 
 - (void)setButtonStyle:(JGActionSheetButtonStyle)buttonStyle forButton:(UIButton *)button {
-    UIColor *backgroundColor, *borderColor, *titleColor = nil;
+    UIColor *backgroundColor, *borderColor, *highlightColor, *titleColor = nil;
     UIFont *font = nil;
     
     if (buttonStyle == JGActionSheetButtonStyleDefault) {
-        font = [UIFont systemFontOfSize:15.0f];
+        font = [UIFont systemFontOfSize:14.0f];
         titleColor = [UIColor blackColor];
         
         backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
         borderColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     }
     else if (buttonStyle == JGActionSheetButtonStyleCancel) {
-        font = [UIFont systemFontOfSize:15.0f];
-        titleColor = [UIColor blackColor];
-        
-        backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
-        borderColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
-    }
-    else if (buttonStyle == JGActionSheetButtonStyleTag) {
-        font = [UIFont systemFontOfSize:15.0f];
+        font = [UIFont systemFontOfSize:14.0f];
         titleColor = rgb(58.0f, 58.0f, 72.0f);
         
         backgroundColor = rgb(255, 255, 255);
-        borderColor = rgb(236.0f, 236.0f, 236.0f);
+        borderColor = rgb(223.0f, 223.0f, 223.0f);
+        highlightColor = rgb(236.0f, 236.0f, 236.0f);
     }
-    else if (buttonStyle == JGActionSheetButtonStyleGreen) {
-        font = [UIFont systemFontOfSize:15.0f];
-        titleColor = [UIColor whiteColor];
+    else if (buttonStyle == JGActionSheetButtonStyleTag) {
+        font = [UIFont systemFontOfSize:14.0f];
+        titleColor = rgb(58.0f, 58.0f, 72.0f);
         
-        backgroundColor = rgb(46.0f, 204.0f, 113.0f);
-        borderColor = rgb(39.0f, 174.0f, 96.0f);
+        backgroundColor = rgb(255, 255, 255);
+        borderColor = rgb(223.0f, 223.0f, 223.0f);
+        highlightColor = rgb(236.0f, 236.0f, 236.0f);
+    }
+    else if (buttonStyle == JGActionSheetButtonStyleRed) {
+        font = [UIFont systemFontOfSize:14.0f];
+        titleColor = rgb(208.0f, 2.0f, 27.0f);
+        
+        backgroundColor = rgb(255, 255, 255);
+        borderColor = rgb(223.0f, 223.0f, 223.0f);
+        highlightColor = rgb(236.0f, 236.0f, 236.0f);
     }
     else if (buttonStyle == JGActionSheetButtonStyleTagBlue) {
-        font = [UIFont systemFontOfSize:15.0f];
+        font = [UIFont systemFontOfSize:14.0f];
         titleColor = rgb(57.0f, 196.0f, 230.0f);
         
         backgroundColor = rgb(255.0f, 255.0f, 255.0f);
@@ -401,14 +405,14 @@ static BOOL disableCustomEasing = NO;
     
 //noteJ Set button highlight and selected colors
     [button setTitleColor:titleColor forState:UIControlStateNormal];
-    [button setTitleColor:rgb(57.0f, 196.0f, 230.0f) forState:UIControlStateHighlighted];
-    [button setTitleColor:rgb(57.0f, 196.0f, 230.0f) forState:UIControlStateSelected];
+    [button setTitleColor:titleColor forState:UIControlStateHighlighted];
+    [button setTitleColor:titleColor forState:UIControlStateSelected];
     
     button.titleLabel.font = font;
     
     [button setBackgroundImage:[self pixelImageWithColor:backgroundColor] forState:UIControlStateNormal];
-    [button setBackgroundImage:[self pixelImageWithColor:titleColor] forState:UIControlStateHighlighted];
-    [button setBackgroundImage:[self pixelImageWithColor:titleColor] forState:UIControlStateSelected];
+    [button setBackgroundImage:[self pixelImageWithColor:highlightColor] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[self pixelImageWithColor:highlightColor] forState:UIControlStateSelected];
     
     button.layer.borderColor = borderColor.CGColor;
 }
@@ -417,9 +421,9 @@ static BOOL disableCustomEasing = NO;
     JGButton *b = [[JGButton alloc] init];
     
 //noteJ Set corner radius and borderwidth of button
-    b.layer.cornerRadius = 5.0f;
+    b.layer.cornerRadius = 0.0f;
     b.layer.masksToBounds = YES;
-    b.layer.borderWidth = 1.0f;
+    b.layer.borderWidth = 0.5f;
     
     [b setTitle:title forState:UIControlStateNormal];
     
@@ -437,11 +441,11 @@ static BOOL disableCustomEasing = NO;
 }
 
 
-//noteJ Sets button height, tableLabelHeight
+//noteJ Sets button height, titleLabelHeight
 - (CGRect)layoutForWidth:(CGFloat)width {
     CGFloat buttonHeight = 44.0f;
-    CGFloat spacing = 0.0f + kSpacing;
-    CGFloat titleLabelHeight = 25;
+    CGFloat spacing = -0.5f + kSpacing;
+    CGFloat titleLabelHeight = 10.0f;
     
     CGFloat height = 0.0f;
     
@@ -479,9 +483,13 @@ static BOOL disableCustomEasing = NO;
     }
     
     for (UIButton *button in self.buttons) {
-        height += spacing;
+ //noteJ Set spacing between buttons
+        height += 0 + spacing;
         
-        button.frame = (CGRect){{spacing, height}, {width-spacing*2.0f, buttonHeight}};
+//noteJ Set button width
+        CGFloat buttonWidth = width;
+        
+        button.frame = (CGRect){{(buttonWidth -width)/-2, height}, {buttonWidth, buttonHeight}};
         
         height += buttonHeight;
     }
@@ -494,7 +502,8 @@ static BOOL disableCustomEasing = NO;
         height += CGRectGetHeight(self.contentView.frame);
     }
     
-    height += spacing;
+//noteJ Sets spacing above and below a button section
+    height += spacing + 10;
     
     self.frame = (CGRect){CGPointZero, {width, height}};
     

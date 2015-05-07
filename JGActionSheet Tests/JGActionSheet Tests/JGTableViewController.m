@@ -194,7 +194,48 @@
 - (void)showSimple:(UIView *)anchor {
     //This is am example of an action sheet that is reused!
     if (!_simple) {
-        _simple = [JGActionSheet actionSheetWithSections:@[[JGActionSheetSection sectionWithTitle:@"Unfriend Mike?" message:nil buttonTitles:@[@"Save to Camera Roll", @"Delete Post"] buttonStyle:JGActionSheetButtonStyleTag], [JGActionSheetSection sectionWithTitle:nil message:nil buttonTitles:@[@"Cancel"] buttonStyle:JGActionSheetButtonStyleTag]]];
+        _simple = [JGActionSheet actionSheetWithSections:@[[JGActionSheetSection sectionWithTitle:@"" message:nil buttonTitles:@[@"Save to Camera Roll", @"Delete Post"] buttonStyle:JGActionSheetButtonStyleTag], [JGActionSheetSection sectionWithTitle:nil message:nil buttonTitles:@[@"Cancel"] buttonStyle:JGActionSheetButtonStyleCancel]]];
+        
+        
+        
+        _simple.delegate = self;
+        
+        _simple.insets = UIEdgeInsetsMake(20.0f, 0.0f, 0.0f, 0.0f);
+        
+        if (iPad) {
+            [_simple setOutsidePressBlock:^(JGActionSheet *sheet) {
+                [sheet dismissAnimated:YES];
+            }];
+        }
+        
+        [_simple setButtonPressedBlock:^(JGActionSheet *sheet, NSIndexPath *indexPath) {
+            [sheet dismissAnimated:YES];
+        }];
+    }
+    
+    if (anchor && iPad) {
+        _anchorView = anchor;
+        _anchorLeft = YES;
+        _currentAnchoredActionSheet = _simple;
+        
+        CGPoint p = (CGPoint){-5.0f, CGRectGetMidY(anchor.bounds)};
+        
+        p = [self.navigationController.view convertPoint:p fromView:anchor];
+        
+        [_simple showFromPoint:p inView:[[UIApplication sharedApplication] keyWindow] arrowDirection:JGActionSheetArrowDirectionRight animated:YES];
+    }
+    else {
+        [_simple showInView:self.navigationController.view animated:YES];
+    }
+}
+
+- (void)showSimpleTitle:(UIView *)anchor {
+    //This is am example of an action sheet that is reused!
+    if (!_simple) {
+        JGActionSheetSection *s1 =  [JGActionSheetSection sectionWithTitle:@"Unfollow Mike?" message:nil buttonTitles:@[@"Save to Camera Roll", @"Delete Post"] buttonStyle:JGActionSheetButtonStyleTag];
+        
+        [s1 setButtonStyle:JGActionSheetButtonStyleTag forButtonAtIndex:0];
+        [s1 setButtonStyle:JGActionSheetButtonStyleRed forButtonAtIndex:1];
         
         _simple.delegate = self;
         
@@ -228,15 +269,13 @@
 }
 
 - (void)multipleSections:(UIView *)anchor {
-    JGActionSheetSection *s1 = [JGActionSheetSection sectionWithTitle:@"A Title" message:@"A short message" buttonTitles:@[@"Button 1", @"Button 2", @"Button 3"] buttonStyle:JGActionSheetButtonStyleDefault];
+
+    JGActionSheetSection *s1 = [JGActionSheetSection sectionWithTitle:@"" message:nil buttonTitles:@[@"Save to Camera Roll", @"Delete Post"] buttonStyle:JGActionSheetButtonStyleDefault];
     
-    JGActionSheetSection *s2 = [JGActionSheetSection sectionWithTitle:@"Another Title" message:@"A long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long, very long message!" buttonTitles:@[@"Red Button", @"Green Button", @"Blue Button"] buttonStyle:JGActionSheetButtonStyleDefault];
+    [s1 setButtonStyle:JGActionSheetButtonStyleTag forButtonAtIndex:0];
+    [s1 setButtonStyle:JGActionSheetButtonStyleRed forButtonAtIndex:1];
     
-    [s2 setButtonStyle:JGActionSheetButtonStyleTag forButtonAtIndex:0];
-    [s2 setButtonStyle:JGActionSheetButtonStyleGreen forButtonAtIndex:1];
-    [s2 setButtonStyle:JGActionSheetButtonStyleTagBlue forButtonAtIndex:2];
-    
-    JGActionSheet *sheet = [JGActionSheet actionSheetWithSections:@[s1, s2, [JGActionSheetSection sectionWithTitle:nil message:nil buttonTitles:@[@"Cancel"] buttonStyle:JGActionSheetButtonStyleCancel]]];
+    JGActionSheet *sheet = [JGActionSheet actionSheetWithSections:@[s1, [JGActionSheetSection sectionWithTitle:nil message:nil buttonTitles:@[@"Cancel"] buttonStyle:JGActionSheetButtonStyleTag]]];
     
     sheet.delegate = self;
     
@@ -279,7 +318,7 @@
     JGActionSheetSection *s3 = [JGActionSheetSection sectionWithTitle:@"Content View Section" message:nil contentView:c];
     
     [s2 setButtonStyle:JGActionSheetButtonStyleTag forButtonAtIndex:0];
-    [s2 setButtonStyle:JGActionSheetButtonStyleGreen forButtonAtIndex:1];
+    [s2 setButtonStyle:JGActionSheetButtonStyleRed forButtonAtIndex:1];
     [s2 setButtonStyle:JGActionSheetButtonStyleTagBlue forButtonAtIndex:2];
     
     JGActionSheet *sheet = [JGActionSheet actionSheetWithSections:@[s1, s2, s3, [JGActionSheetSection sectionWithTitle:nil message:nil buttonTitles:@[@"Cancel"] buttonStyle:JGActionSheetButtonStyleCancel]]];
