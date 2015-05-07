@@ -218,7 +218,7 @@ static BOOL disableCustomEasing = NO;
             titleLabel.backgroundColor = [UIColor clearColor];
             titleLabel.textAlignment = NSTextAlignmentCenter;
             titleLabel.font = [UIFont systemFontOfSize:12.0f];
-            titleLabel.textColor = [UIColor blackColor];
+            titleLabel.textColor = rgb(58.0f, 58.0f, 72.0f);
             titleLabel.numberOfLines = 1;
             
             titleLabel.text = title;
@@ -279,7 +279,7 @@ static BOOL disableCustomEasing = NO;
             titleLabel.backgroundColor = [UIColor clearColor];
             titleLabel.textAlignment = NSTextAlignmentCenter;
             titleLabel.font = [UIFont boldSystemFontOfSize:14.0f];
-            titleLabel.textColor = [UIColor blackColor];
+            titleLabel.textColor = rgb(58.0f, 58.0f, 72.0f);
             titleLabel.numberOfLines = 1;
             
             titleLabel.text = title;
@@ -294,7 +294,7 @@ static BOOL disableCustomEasing = NO;
             messageLabel.backgroundColor = [UIColor clearColor];
             messageLabel.textAlignment = NSTextAlignmentCenter;
             messageLabel.font = [UIFont systemFontOfSize:12.0f];
-            messageLabel.textColor = [UIColor blackColor];
+            messageLabel.textColor = rgb(58.0f, 58.0f, 72.0f);
             messageLabel.numberOfLines = 0;
             
             messageLabel.text = message;
@@ -365,14 +365,14 @@ static BOOL disableCustomEasing = NO;
     UIFont *font = nil;
     
     if (buttonStyle == JGActionSheetButtonStyleDefault) {
-        font = [UIFont systemFontOfSize:14.0f];
-        titleColor = [UIColor blackColor];
+        font = [UIFont systemFontOfSize:15.0f];
+        titleColor = rgb(58.0f, 58.0f, 72.0f);
         
         backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
         borderColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     }
     else if (buttonStyle == JGActionSheetButtonStyleCancel) {
-        font = [UIFont systemFontOfSize:14.0f];
+        font = [UIFont systemFontOfSize:15.0f];
         titleColor = rgb(58.0f, 58.0f, 72.0f);
         
         backgroundColor = rgb(255, 255, 255);
@@ -380,7 +380,7 @@ static BOOL disableCustomEasing = NO;
         highlightColor = rgb(236.0f, 236.0f, 236.0f);
     }
     else if (buttonStyle == JGActionSheetButtonStyleTag) {
-        font = [UIFont systemFontOfSize:14.0f];
+        font = [UIFont systemFontOfSize:15.0f];
         titleColor = rgb(58.0f, 58.0f, 72.0f);
         
         backgroundColor = rgb(255, 255, 255);
@@ -388,7 +388,7 @@ static BOOL disableCustomEasing = NO;
         highlightColor = rgb(236.0f, 236.0f, 236.0f);
     }
     else if (buttonStyle == JGActionSheetButtonStyleRed) {
-        font = [UIFont systemFontOfSize:14.0f];
+        font = [UIFont systemFontOfSize:15.0f];
         titleColor = rgb(208.0f, 2.0f, 27.0f);
         
         backgroundColor = rgb(255, 255, 255);
@@ -396,7 +396,7 @@ static BOOL disableCustomEasing = NO;
         highlightColor = rgb(236.0f, 236.0f, 236.0f);
     }
     else if (buttonStyle == JGActionSheetButtonStyleTagBlue) {
-        font = [UIFont systemFontOfSize:14.0f];
+        font = [UIFont systemFontOfSize:15.0f];
         titleColor = rgb(57.0f, 196.0f, 230.0f);
         
         backgroundColor = rgb(255.0f, 255.0f, 255.0f);
@@ -443,9 +443,9 @@ static BOOL disableCustomEasing = NO;
 
 //noteJ Sets button height, titleLabelHeight
 - (CGRect)layoutForWidth:(CGFloat)width {
-    CGFloat buttonHeight = 44.0f;
+    CGFloat buttonHeight = 46.0f;
     CGFloat spacing = -0.5f + kSpacing;
-    CGFloat titleLabelHeight = 10.0f;
+    CGFloat titleLabelHeight = 7.0f;
     
     CGFloat height = 0.0f;
     

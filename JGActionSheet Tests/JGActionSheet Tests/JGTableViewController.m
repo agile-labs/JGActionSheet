@@ -194,7 +194,7 @@
 - (void)showSimple:(UIView *)anchor {
     //This is am example of an action sheet that is reused!
     if (!_simple) {
-        _simple = [JGActionSheet actionSheetWithSections:@[[JGActionSheetSection sectionWithTitle:@"" message:nil buttonTitles:@[@"Save to Camera Roll", @"Delete Post"] buttonStyle:JGActionSheetButtonStyleTag], [JGActionSheetSection sectionWithTitle:nil message:nil buttonTitles:@[@"Cancel"] buttonStyle:JGActionSheetButtonStyleCancel]]];
+        _simple = [JGActionSheet actionSheetWithSections:@[[JGActionSheetSection sectionWithTitle:@"Options" message:nil buttonTitles:@[@"Save to Camera Roll", @"Delete Post"] buttonStyle:JGActionSheetButtonStyleTag], [JGActionSheetSection sectionWithTitle:nil message:nil buttonTitles:@[@"Cancel"] buttonStyle:JGActionSheetButtonStyleCancel]]];
         
         
         
