@@ -47,15 +47,16 @@
 #define iPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #endif
 
-#define kHostsCornerRadius 3.0f
+//noteJ Set radius of background view
+#define kHostsCornerRadius 0.0f
 
-#define kSpacing 5.0f
+#define kSpacing 0.0f
 
 #define kArrowBaseWidth 20.0f
 #define kArrowHeight 10.0f
 
-#define kShadowRadius 4.0f
-#define kShadowOpacity 0.2f
+#define kShadowRadius 0.0f
+#define kShadowOpacity 0.0f
 
 #define kFixedWidth 320.0f
 #define kFixedWidthContinuous 300.0f
@@ -320,7 +321,7 @@ static BOOL disableCustomEasing = NO;
         self.layer.shadowOpacity = 0.0f;
     }
     else {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = rgb(246.0f, 246.0f, 246.0f);
         self.layer.cornerRadius = kHostsCornerRadius;
         
         self.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -356,6 +357,8 @@ static BOOL disableCustomEasing = NO;
     return [img resizableImageWithCapInsets:UIEdgeInsetsZero];
 }
 
+//noteJ Set button styles
+
 - (void)setButtonStyle:(JGActionSheetButtonStyle)buttonStyle forButton:(UIButton *)button {
     UIColor *backgroundColor, *borderColor, *titleColor = nil;
     UIFont *font = nil;
@@ -368,18 +371,18 @@ static BOOL disableCustomEasing = NO;
         borderColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     }
     else if (buttonStyle == JGActionSheetButtonStyleCancel) {
-        font = [UIFont boldSystemFontOfSize:15.0f];
+        font = [UIFont systemFontOfSize:15.0f];
         titleColor = [UIColor blackColor];
         
         backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
         borderColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     }
-    else if (buttonStyle == JGActionSheetButtonStyleRed) {
+    else if (buttonStyle == JGActionSheetButtonStyleTag) {
         font = [UIFont systemFontOfSize:15.0f];
-        titleColor = [UIColor whiteColor];
+        titleColor = rgb(58.0f, 58.0f, 72.0f);
         
-        backgroundColor = rgb(231.0f, 76.0f, 60.0f);
-        borderColor = rgb(192.0f, 57.0f, 43.0f);
+        backgroundColor = rgb(255, 255, 255);
+        borderColor = rgb(236.0f, 236.0f, 236.0f);
     }
     else if (buttonStyle == JGActionSheetButtonStyleGreen) {
         font = [UIFont systemFontOfSize:15.0f];
@@ -388,20 +391,24 @@ static BOOL disableCustomEasing = NO;
         backgroundColor = rgb(46.0f, 204.0f, 113.0f);
         borderColor = rgb(39.0f, 174.0f, 96.0f);
     }
-    else if (buttonStyle == JGActionSheetButtonStyleBlue) {
+    else if (buttonStyle == JGActionSheetButtonStyleTagBlue) {
         font = [UIFont systemFontOfSize:15.0f];
-        titleColor = [UIColor whiteColor];
+        titleColor = rgb(57.0f, 196.0f, 230.0f);
         
-        backgroundColor = rgb(52.0f, 152.0f, 219.0f);
-        borderColor = rgb(41.0f, 128.0f, 185.0f);
+        backgroundColor = rgb(255.0f, 255.0f, 255.0f);
+        borderColor = rgb(175.0f, 175.0f, 178.0f);
     }
     
+//noteJ Set button highlight and selected colors
     [button setTitleColor:titleColor forState:UIControlStateNormal];
+    [button setTitleColor:rgb(57.0f, 196.0f, 230.0f) forState:UIControlStateHighlighted];
+    [button setTitleColor:rgb(57.0f, 196.0f, 230.0f) forState:UIControlStateSelected];
     
     button.titleLabel.font = font;
     
     [button setBackgroundImage:[self pixelImageWithColor:backgroundColor] forState:UIControlStateNormal];
-    [button setBackgroundImage:[self pixelImageWithColor:borderColor] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[self pixelImageWithColor:titleColor] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[self pixelImageWithColor:titleColor] forState:UIControlStateSelected];
     
     button.layer.borderColor = borderColor.CGColor;
 }
@@ -409,7 +416,8 @@ static BOOL disableCustomEasing = NO;
 - (JGButton *)makeButtonWithTitle:(NSString *)title style:(JGActionSheetButtonStyle)style {
     JGButton *b = [[JGButton alloc] init];
     
-    b.layer.cornerRadius = 2.0f;
+//noteJ Set corner radius and borderwidth of button
+    b.layer.cornerRadius = 5.0f;
     b.layer.masksToBounds = YES;
     b.layer.borderWidth = 1.0f;
     
@@ -428,19 +436,22 @@ static BOOL disableCustomEasing = NO;
     }
 }
 
+
+//noteJ Sets button height, tableLabelHeight
 - (CGRect)layoutForWidth:(CGFloat)width {
-    CGFloat buttonHeight = 40.0f;
-    CGFloat spacing = kSpacing;
+    CGFloat buttonHeight = 44.0f;
+    CGFloat spacing = 0.0f + kSpacing;
+    CGFloat titleLabelHeight = 25;
     
     CGFloat height = 0.0f;
     
     if (self.titleLabel) {
-        height += spacing;
+        height += titleLabelHeight;
         
         [self.titleLabel sizeToFit];
         height += CGRectGetHeight(self.titleLabel.frame);
         
-        self.titleLabel.frame = (CGRect){{spacing, spacing}, {width-spacing*2.0f, CGRectGetHeight(self.titleLabel.frame)}};
+        self.titleLabel.frame = (CGRect){{titleLabelHeight, titleLabelHeight/2 + 2}, {width-titleLabelHeight*2.0f, CGRectGetHeight(self.titleLabel.frame)}};
     }
     
     if (self.messageLabel) {
@@ -542,7 +553,8 @@ static BOOL disableCustomEasing = NO;
         [_scrollViewHost addSubview:_scrollView];
         [self addSubview:_scrollViewHost];
         
-        self.backgroundColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
+//noteJ Set opacity and color of overlay
+        self.backgroundColor = rgba(9.0f, 9.0f, 26.0f, .6);
         
         _sections = sections;
         
