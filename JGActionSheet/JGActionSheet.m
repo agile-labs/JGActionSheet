@@ -389,7 +389,7 @@ static BOOL disableCustomEasing = NO;
     }
     else if (buttonStyle == JGActionSheetButtonStyleRed) {
         font = [UIFont systemFontOfSize:16.0f];
-        titleColor = rgb(150.0f, 1.0f, 19.0f);
+        titleColor = rgb(208.0f, 2.0f, 27.0f);
         
         backgroundColor = rgb(255, 255, 255);
         borderColor = rgb(223.0f, 223.0f, 223.0f);
