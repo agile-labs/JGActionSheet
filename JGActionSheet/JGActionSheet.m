@@ -365,14 +365,14 @@ static BOOL disableCustomEasing = NO;
     UIFont *font = nil;
     
     if (buttonStyle == JGActionSheetButtonStyleDefault) {
-        font = [UIFont systemFontOfSize:15.0f];
+        font = [UIFont systemFontOfSize:16.0f];
         titleColor = rgb(58.0f, 58.0f, 72.0f);
         
         backgroundColor = [UIColor colorWithWhite:0.95f alpha:1.0f];
         borderColor = [UIColor colorWithWhite:0.9f alpha:1.0f];
     }
     else if (buttonStyle == JGActionSheetButtonStyleCancel) {
-        font = [UIFont systemFontOfSize:15.0f];
+        font = [UIFont systemFontOfSize:16.0f];
         titleColor = rgb(58.0f, 58.0f, 72.0f);
         
         backgroundColor = rgb(255, 255, 255);
@@ -380,7 +380,7 @@ static BOOL disableCustomEasing = NO;
         highlightColor = rgb(236.0f, 236.0f, 236.0f);
     }
     else if (buttonStyle == JGActionSheetButtonStyleTag) {
-        font = [UIFont systemFontOfSize:15.0f];
+        font = [UIFont systemFontOfSize:16.0f];
         titleColor = rgb(58.0f, 58.0f, 72.0f);
         
         backgroundColor = rgb(255, 255, 255);
@@ -388,7 +388,7 @@ static BOOL disableCustomEasing = NO;
         highlightColor = rgb(236.0f, 236.0f, 236.0f);
     }
     else if (buttonStyle == JGActionSheetButtonStyleRed) {
-        font = [UIFont systemFontOfSize:15.0f];
+        font = [UIFont systemFontOfSize:16.0f];
         titleColor = rgb(208.0f, 2.0f, 27.0f);
         
         backgroundColor = rgb(255, 255, 255);
@@ -396,7 +396,7 @@ static BOOL disableCustomEasing = NO;
         highlightColor = rgb(236.0f, 236.0f, 236.0f);
     }
     else if (buttonStyle == JGActionSheetButtonStyleTagBlue) {
-        font = [UIFont systemFontOfSize:15.0f];
+        font = [UIFont systemFontOfSize:16.0f];
         titleColor = rgb(57.0f, 196.0f, 230.0f);
         
         backgroundColor = rgb(255.0f, 255.0f, 255.0f);
