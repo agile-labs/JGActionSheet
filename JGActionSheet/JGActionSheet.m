@@ -389,7 +389,7 @@ static BOOL disableCustomEasing = NO;
     }
     else if (buttonStyle == JGActionSheetButtonStyleRed) {
         font = [UIFont systemFontOfSize:16.0f];
-        titleColor = rgb(208.0f, 2.0f, 27.0f);
+        titleColor = rgb(150.0f, 1.0f, 19.0f);
         
         backgroundColor = rgb(255, 255, 255);
         borderColor = rgb(223.0f, 223.0f, 223.0f);
@@ -397,10 +397,12 @@ static BOOL disableCustomEasing = NO;
     }
     else if (buttonStyle == JGActionSheetButtonStyleTagBlue) {
         font = [UIFont systemFontOfSize:16.0f];
-        titleColor = rgb(57.0f, 196.0f, 230.0f);
+        titleColor = rgb(41.0f, 141.0f, 165.0f);
         
-        backgroundColor = rgb(255.0f, 255.0f, 255.0f);
-        borderColor = rgb(175.0f, 175.0f, 178.0f);
+        backgroundColor = rgb(255, 255, 255);
+        borderColor = rgb(223.0f, 223.0f, 223.0f);
+        highlightColor = rgb(236.0f, 236.0f, 236.0f);
+        
     }
     
 //noteJ Set button highlight and selected colors
